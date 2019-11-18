@@ -10,6 +10,19 @@ try {
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
+
+  console.log(get_contents());
 } catch (error) {
   core.setFailed(error.message);
+}
+
+
+
+function get_contents(github){
+  return github.git.getTree({
+    owner: github.repository.organization,
+    repo: github.repository.name,
+    tree_sha: github.head_commit.tree_id,
+    recursive: true
+  })
 }
