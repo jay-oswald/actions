@@ -1,0 +1,13 @@
+{
+  "name": "actions",
+  "version": "1.0.0",
+  "description": "Chromatix GitHub Actions",
+  "main": "index.js",
+  "repository": "github.com/ChromatixAU/actions",
+  "author": "Jay Oswald <j@chromatix.com.au>",
+  "dependencies": {
+    "@actions/core": "^1.2.0",
+    "@actions/github": "^1.1.0",
+    "@zeit/ncc": "zeit/ncc"
+  }
+}
