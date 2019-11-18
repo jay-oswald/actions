@@ -11,7 +11,7 @@ try {
   //const payload = JSON.stringify(github.context.payload, undefined, 2)
   //console.log(`The event payload: ${payload}`);
 
-  console.log("CONTENST: " + JSON.stringify(get_contents()));
+  console.log("CONTENST: " + JSON.stringify(get_contents(github)));
 } catch (error) {
   core.setFailed(error.message);
 }
