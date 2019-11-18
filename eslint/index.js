@@ -19,6 +19,7 @@ try {
 
 
 function get_contents(github){
+  console.log("GETTING CONTENTS");
   return github.git.getTree({
     owner: github.context.payload.repository.organization,
     repo: github.context.payload.repository.name,
