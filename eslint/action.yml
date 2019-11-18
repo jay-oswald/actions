@@ -8,10 +8,6 @@ inputs:
 outputs:
   time:
     description: 'The time'
-steps:
-  - uses: actions/checkout@v1
-  - uses: actions/setup-node@v1
-  - name: ES Lint
-    - runs:
-      using: 'node12'
-      main: 'dist/index.js'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
