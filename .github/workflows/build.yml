@@ -1,0 +1,12 @@
+name: ESLint Workflow Re-Run 4
+
+on: [push]
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install
+        run: yarn
+      - name: Build ES Lint
+        run: yarn build-eslint

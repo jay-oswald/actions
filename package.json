@@ -6,7 +6,7 @@
   "repository": "github.com/ChromatixAU/actions",
   "author": "Jay Oswald <j@chromatix.com.au>",
   "scripts": {
-    "build": "ncc build eslint/index.js -o eslint/dist"
+    "build-eslint": "ncc build eslint/index.js -o eslint/dist"
   },
   "dependencies": {
     "@actions/core": "^1.2.0",
