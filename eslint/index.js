@@ -22,10 +22,12 @@ function get_contents(github){
   console.log("GITHUB");
   console.log(JSON.stringify(github, undefined, 2));
   console.log("GETTING CONTENTS");
-  return github.git.getTree({
+  let contents = github.getTree({
     owner: github.context.payload.repository.organization,
     repo: github.context.payload.repository.name,
     tree_sha: github.context.payload.head_commit.tree_id,
     recursive: true
-  })
+  });
+  console.log(contents);
+  return contents;
 }
