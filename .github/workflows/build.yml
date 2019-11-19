@@ -10,4 +10,3 @@ jobs:
         run: yarn
       - name: Build ES Lint
         run: yarn build-eslint
-      - name: Push
