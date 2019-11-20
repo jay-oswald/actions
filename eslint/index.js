@@ -1,4 +1,5 @@
 const fs = require('fs');
+const glob = require('glob');
 const core = require('@actions/core');
 const github = require('@actions/github');
 
@@ -6,6 +7,7 @@ const github = require('@actions/github');
 try{
   const eslint = require( 'eslint' );
   console.log(process.cwd());
+  console.log(glob.sync(process.cwd() + '/*'));
 
   const configFilePath = process.cwd() + '/.eslintrc.js';
   const configFile = fs.existsSync(configFilePath);
