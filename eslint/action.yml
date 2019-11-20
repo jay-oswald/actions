@@ -1,13 +1,7 @@
 name: 'ES Lint'
 description: 'Lint Javascript'
 inputs:
-  who-to-greet:
-    description: "Who should be greet"
-    required: true
-
 outputs:
-  time:
-    description: 'The time'
 runs:
   using: 'node12'
   main: 'dist/index.js'
