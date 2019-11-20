@@ -10,5 +10,7 @@ jobs:
         uses: actions/checkout@v1
       - name: Install
         run: yarn
+      - name: Install NCC
+        run: npm i -g @zeit/ncc
       - name: Build ES Lint
         run: yarn build-eslint
