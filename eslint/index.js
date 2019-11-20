@@ -7,11 +7,17 @@ try{
   const eslint = require( 'eslint' );
   console.log(process.cwd());
 
-  console.log(fs.existsSync(process.cwd() + '/.eslintrc.js'));
+  const configFilePath = process.cwd() + '/.eslintrc.js';
+  const configFile = fs.existsSync(configFilePath);
+
+  if(!configFile){
+    core.setOutput("No JS Config file, no linting");
+    return;
+  }
 
 
   const cli = new eslint.CLIEngine({
-
+    configFile: configFilePath
   });
 
   const report = cli.executeOnFiles(['.']);
