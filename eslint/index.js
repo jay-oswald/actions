@@ -6,61 +6,46 @@ const {
 } = repository;
 const { name: repo } = repository;
 
-run().catch(exitWithError);
+eslint();
 
 
-function eslint() {
-  const eslint = require('eslint');
-
+async function eslint() {
+  const eslint = require( 'eslint' );
   const cli = new eslint.CLIEngine();
+
   const report = cli.executeOnFiles(['.']);
-  // fixableErrorCount, fixableWarningCount are available too
-  const { results, errorCount, warningCount } = report;
+  console.table(report);
 
-  const levels = ['', 'warning', 'failure'];
-
-  const annotations = [];
-  for (const result of results) {
-    const { filePath, messages } = result;
-    const path = filePath.substring(process.cwd() + 1);
-    for (const msg of messages) {
-      const { line, severity, ruleId, message } = msg;
-      const annotationLevel = levels[severity];
-      annotations.push({
-        path,
-        start_line: line,
-        end_line: line,
-        annotation_level: annotationLevel,
-        message: `[${ruleId}] ${message}`
-      })
-    }
-  }
-
-  return {
-    conclusion: errorCount > 0 ? 'failure' : 'success',
-    output: {
-      title: checkName,
-      summary: `${errorCount} error(s), ${warningCount} warning(s) found`,
-      annotations
-    }
-  }
-}
-function exitWithError(err) {
-  console.error('Error', err.stack)
-  if (err.data) {
-    console.error(err.data)
-  }
-  process.exit(1)
-}
-
-async function run() {
-  try {
-    const { conclusion, output } = eslint();
-    console.log(output.summary);
-    if (conclusion === 'failure') {
-      process.exit(78)
-    }
-  } catch (err) {
-    exitWithError(err)
-  }
+  //
+  // const report = cli.executeOnFiles( [ '.' ] );
+  // // fixableErrorCount, fixableWarningCount are available too
+  // const { results, errorCount, warningCount } = report;
+  //
+  // const levels = [ '', 'warning', 'failure' ];
+  //
+  // const annotations = [];
+  // for( const result of results ) {
+  //   const { filePath, messages } = result;
+  //   const path = filePath.substring( process.cwd() + 1 );
+  //   for( const msg of messages ) {
+  //     const { line, severity, ruleId, message } = msg;
+  //     const annotationLevel = levels[severity];
+  //     annotations.push( {
+  //       path,
+  //       start_line: line,
+  //       end_line: line,
+  //       annotation_level: annotationLevel,
+  //       message: `[${ruleId}] ${message}`
+  //     } )
+  //   }
+  // }
+  //
+  // return {
+  //   conclusion: errorCount > 0 ? 'failure' : 'success',
+  //   output: {
+  //     title: checkName,
+  //     summary: `${errorCount} error(s), ${warningCount} warning(s) found`,
+  //     annotations
+  //   }
+  // }
 }
