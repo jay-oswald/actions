@@ -6,6 +6,8 @@ jobs:
   eslint:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v1
       - name: Install
         run: yarn
       - name: Build ES Lint
