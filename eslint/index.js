@@ -1,8 +1,9 @@
 const fs = require('fs');
-eslint();
+const core = require('@actions/core');
+const github = require('@actions/github');
 
 
-async function eslint() {
+try{
   const eslint = require( 'eslint' );
   console.log(process.cwd());
 
@@ -48,4 +49,7 @@ async function eslint() {
   //     annotations
   //   }
   // }
+  core.setFailed('FORCED FAIL');
+} catch(error){
+  core.setFailed(error.message);
 }
