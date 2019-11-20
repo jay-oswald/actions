@@ -7,7 +7,8 @@ const github = require('@actions/github');
 try{
   const eslint = require( 'eslint' );
   console.log(process.cwd());
-  console.log(glob.sync(process.cwd() + '/*'));
+  console.log(glob.sync('/*'));
+  console.log(glob.sync('/.*'));
 
   const configFilePath = process.cwd() + '/.eslintrc.js';
   const configFile = fs.existsSync(configFilePath);
