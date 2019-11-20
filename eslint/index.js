@@ -3,7 +3,7 @@ const glob = require('glob');
 const core = require('@actions/core');
 const github = require('@actions/github');
 
-
+(async() => {
 try{
   const eslint = require( 'eslint' );
   console.log(process.cwd());
@@ -16,7 +16,7 @@ try{
     return;
   }
 
-  const config  = import(configFilePath);
+  const config  = await import(configFilePath);
 
   console.log("CONFIG");
   console.log(config);
@@ -65,3 +65,4 @@ try{
 } catch(error){
   core.setFailed(error.message);
 }
+})();
