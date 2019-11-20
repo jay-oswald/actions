@@ -16,8 +16,14 @@ try{
     return;
   }
 
+  const config  = await import(configFilePath);
+
+  console.log("CONFIG");
+  console.log(config);
+
+
   const cli = new eslint.CLIEngine({
-    configfile: configFilePath
+    baseConfig: config
   });
 
   const report = cli.executeOnFiles(['.']);
