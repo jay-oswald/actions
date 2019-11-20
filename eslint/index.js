@@ -1,17 +1,17 @@
-const { GITHUB_SHA, GITHUB_EVENT_PATH, GITHUB_TOKEN, GITHUB_WORKSPACE } = process.env;
-const event = require(GITHUB_EVENT_PATH);
-const { repository } = event;
-const {
-  owner: { login: owner }
-} = repository;
-const { name: repo } = repository;
-
+const fs = require('fs');
 eslint();
 
 
 async function eslint() {
   const eslint = require( 'eslint' );
-  const cli = new eslint.CLIEngine();
+  console.log(process.cwd());
+
+  console.log(fs.existsSync(process.cwd() + '/.eslintrc'));
+
+
+  const cli = new eslint.CLIEngine({
+
+  });
 
   const report = cli.executeOnFiles(['.']);
   console.table(report);
