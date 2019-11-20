@@ -1,5 +1,8 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+import glob from 'glob';
+import { CLIEngine } from 'eslint';
+import { assert, describe } from 'chai';
 
 try {
   // `who-to-greet` input defined in action metadata file
@@ -11,23 +14,40 @@ try {
   //const payload = JSON.stringify(github.context.payload, undefined, 2)
   //console.log(`The event payload: ${payload}`);
 
-  console.log("CONTENST: " + JSON.stringify(get_contents(github)));
+
+  const paths = glob.sync('./+(app|test)/**/*.js');
+  const engine = new CLIEngine({
+    envs: ['node', 'mocha'],
+    useEslintrc: true,
+  });
+
+  const results = engine.executeOnFiles(paths).results;
+
+  describe('ESLint', function() {
+    results.forEach((result) => generateTest(result));
+  });
+
+
 } catch (error) {
   core.setFailed(error.message);
 }
 
 
 
-function get_contents(github){
-  console.log("GITHUB");
-  console.log(JSON.stringify(github, undefined, 2));
-  console.log("GETTING CONTENTS");
-  let contents = github.getTree({
-    owner: github.context.payload.repository.organization,
-    repo: github.context.payload.repository.name,
-    tree_sha: github.context.payload.head_commit.tree_id,
-    recursive: true
+function generateTest(result) {
+  const { filePath, messages } = result;
+
+  it(`validates ${filePath}`, function() {
+    if (messages.length > 0) {
+      assert.fail(false, true, formatMessages(messages));
+    }
   });
-  console.log(contents);
-  return contents;
+}
+
+function formatMessages(messages) {
+  const errors = messages.map((message) => {
+    return `${message.line}:${message.column} ${message.message.slice(0, -1)} - ${message.ruleId}\n`;
+  });
+
+  return `\n${errors.join('')}`;
 }
