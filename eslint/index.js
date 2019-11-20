@@ -20,6 +20,22 @@ const headers = {
 
 run().catch(exitWithError);
 
+async function createCheck() {
+  const body = {
+    name: checkName,
+    head_sha: GITHUB_SHA,
+    status: 'in_progress',
+    started_at: new Date()
+  };
+
+  const { data } = await request(`https://api.github.com/repos/${owner}/${repo}/check-runs`, {
+    method: 'POST',
+    headers,
+    body
+  });
+  const { id } = data;
+  return id;
+}
 
 function eslint() {
   const eslint = require('eslint');
