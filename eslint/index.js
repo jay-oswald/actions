@@ -7,8 +7,6 @@ const github = require('@actions/github');
 try{
   const eslint = require( 'eslint' );
   console.log(process.cwd());
-  console.log(glob.sync('*'));
-  console.log(glob.sync('.*'));
 
   const configFilePath = process.cwd() + '/.eslintrc.js';
   const configFile = fs.existsSync(configFilePath);
@@ -18,9 +16,11 @@ try{
     return;
   }
 
+  const config  = import(configFilePath);
+
 
   const cli = new eslint.CLIEngine({
-    configFile: configFilePath
+    baseConfig: config
   });
 
   const report = cli.executeOnFiles(['.']);
