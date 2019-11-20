@@ -1,7 +1,5 @@
 name: 'ES Lint'
 description: 'Lint Javascript'
-inputs:
-outputs:
 runs:
   using: 'node12'
   main: 'dist/index.js'
