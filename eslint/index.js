@@ -6,7 +6,7 @@ async function eslint() {
   const eslint = require( 'eslint' );
   console.log(process.cwd());
 
-  console.log(fs.existsSync(process.cwd() + '/.eslintrc'));
+  console.log(fs.existsSync(process.cwd() + '/.eslintrc.js'));
 
 
   const cli = new eslint.CLIEngine({
