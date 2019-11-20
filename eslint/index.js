@@ -22,7 +22,7 @@ function eslint() {
   const annotations = [];
   for (const result of results) {
     const { filePath, messages } = result;
-    const path = filePath.substring(GITHUB_WORKSPACE.length + 1);
+    const path = filePath.substring(process.cwd() + 1);
     for (const msg of messages) {
       const { line, severity, ruleId, message } = msg;
       const annotationLevel = levels[severity];
