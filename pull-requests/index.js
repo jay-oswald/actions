@@ -35,7 +35,7 @@ const Octokit = require("@octokit/rest");
       auth: token
     });
 
-    const pull_request = await github_api.pulls.get({
+    const pull_request = await octokit.pulls.get({
       owner: context.pull_request.head.repo.owner.login,
       repo: context.pull_request.head.repo.name,
       pull_number: context.pull_request.number,
