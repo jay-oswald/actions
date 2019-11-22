@@ -1,0 +1,5 @@
+name: 'Chromatix Pull Requests'
+description: 'Automating Pull Requests'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

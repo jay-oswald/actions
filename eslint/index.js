@@ -2,10 +2,11 @@ const fs = require('fs');
 const glob = require('glob');
 const core = require('@actions/core');
 const github = require('@actions/github');
+const eslint = require( 'eslint' );
 
 (async() => {
 try{
-  const eslint = require( 'eslint' );
+
   console.log(process.cwd());
 
   const configFilePath = process.cwd() + '/.eslintrc.js';
@@ -26,7 +27,7 @@ try{
     baseConfig: config
   });
 
-  const report = cli.executeOnFiles(['.']);
+  const report = cli.executeOnFiles(['js/']);
   console.table(report);
 
   //
