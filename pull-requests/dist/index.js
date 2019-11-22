@@ -3686,11 +3686,8 @@ const github = __webpack_require__(469);
     const target_branch = context.payload.pull_request.base.ref;
     const source_branch = context.payload.pull_request.head.ref;
 
-    console.table( {
-      'target': target_branch,
-      'source': source_branch,
+    console.log(`You are wanting to merge from ${source_branch} to ${target_branch} `);
 
-    });
     if(target_branch !== 'master' && target_branch !== 'dev' && !target_branch.includes('staging')){
       console.log('Not running on target branch, is not master, dev or staging');
       return;
@@ -3701,7 +3698,7 @@ const github = __webpack_require__(469);
       return;
     }
 
-    if(target_branch.includes('staging') && (source_branch !== 'dev' || !source_branch.includes('staging'))){
+    if(target_branch.includes('staging') && source_branch !== 'dev' && !source_branch.includes('staging')){
       core.setFailed("Can not deploy to staging from any branches except dev and staging");
       return;
     }
