@@ -1,4 +1,4 @@
-name: ESLint Workflow Re-Run 4
+name: Chromatix Actions Builder
 
 on: [push]
 
@@ -12,6 +12,8 @@ jobs:
         run: yarn
       - name: Build ES Lint
         run: yarn build-eslint
+      - name: Build Pull Requests
+        run: yarn build-pull-requests
       - name: Commit Files
         run: |
           git config --local user.email "services@chromatix.com.au"
