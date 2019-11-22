@@ -7,7 +7,7 @@
   "author": "Jay Oswald <j@chromatix.com.au>",
   "scripts": {
     "build-eslint": "ncc build eslint/index.js -o eslint/dist",
-    "build-pull-requests": "ncc build pull-requests/index.js -o pull-requestsnt/dist"
+    "build-pull-requests": "ncc build pull-requests/index.js -o pull-requests/dist"
   },
   "dependencies": {
     "@actions/core": "^1.2.0",
