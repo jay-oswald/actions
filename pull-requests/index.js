@@ -3,9 +3,6 @@ const github = require('@actions/github');
 
 (async() => {
   try{
-    console.log(JSON.stringify(github));
-    core.setFailed('FORCED FAIL');
-
     const context = github.context;
 
     if(context.eventName !== 'pull_request'){
@@ -15,6 +12,12 @@ const github = require('@actions/github');
 
     const target_branch = context.payload.pull_request.base.ref;
     const source_branch = context.payload.pull_request.head.ref;
+
+    console.table( {
+      'target': target_branch,
+      'source': source_branch,
+
+    });
     if(target_branch !== 'master' && target_branch !== 'dev' && !target_branch.includes('staging')){
       console.log('Not running on target branch, is not master, dev or staging');
       return;
@@ -48,6 +51,7 @@ const github = require('@actions/github');
       //TODO request reviews
     }
 
+    core.setFailed('FORCED FAIL');
 
   } catch(error){
     core.setFailed(error.message);
