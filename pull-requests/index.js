@@ -3,7 +3,7 @@ const github = require('@actions/github');
 
 (async() => {
   try{
-    console.log(github);
+    console.log(JSON.stringify(github));
     core.setFailed('FORCED FAIL');
   } catch(error){
     core.setFailed(error.message);

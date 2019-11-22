@@ -8,6 +8,10 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v1
+      - name: Clean Dist Folders
+        run: |
+          rm -rf eslint/dist/
+          rm -rf pull-requests/dist/
       - name: Install
         run: yarn
       - name: Build ES Lint
