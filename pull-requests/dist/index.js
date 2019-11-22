@@ -3704,9 +3704,8 @@ const github = __webpack_require__(469);
     }
 
     const token = core.getInput('token');
-    const github_api = new github.Github(token);
 
-    const pull_request = await github_api.pulls.get({
+    const pull_request = await github.pulls.get({
       owner: context.pull_request.head.repo.owner.login,
       repo: context.pull_request.head.repo.name,
       pull_number: context.pull_request.number,
