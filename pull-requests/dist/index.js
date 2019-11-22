@@ -3676,7 +3676,7 @@ const github = __webpack_require__(469);
 
 (async() => {
   try{
-    console.log(github);
+    console.log(JSON.stringify(github));
     core.setFailed('FORCED FAIL');
   } catch(error){
     core.setFailed(error.message);
