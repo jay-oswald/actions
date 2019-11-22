@@ -25,7 +25,7 @@ const github = require('@actions/github');
       return;
     }
 
-    if(target_branch.includes('staging') && (source_branch !== 'dev' || !source_branch.includes('staging')){
+    if(target_branch.includes('staging') && (source_branch !== 'dev' || !source_branch.includes('staging'))){
       core.setFailed("Can not deploy to staging from any branches except dev and staging");
       return;
     }
